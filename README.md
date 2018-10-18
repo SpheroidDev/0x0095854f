@@ -17,7 +17,7 @@ attempted to write memory at 0x028d1980
 
 ***
 # Mod
-This Forged Alliance mod deisgned to help to reproduce this issue solo. This issue reproduction requires very intence and lont time game process which cannot be easy achiaved without involving of other players. Mod helps. It designed to force game engine to allocate more and more memory buffers for game resources. Note: models of reclaim (after unit killing) have impact on memory usage (more diverse reclaim on filed -> more memory usage).
+This Forged Alliance mod deisgned to help to reproduce this issue solo. This issue reproduction requires very intence and lont time game process which cannot be easy achiaved without involving of other players. Mod helps. It designed to force game engine to allocate more and more memory buffers for game resources. Note: 3d models of reclaim (after unit killing) have impact on memory usage (more diverse reclaim on filed -> more memory usage).
 
 Mod provides an endless units spawning procedure. Spawn units of different types. Spawn units for each army in game.  And during unit spawning number of spawned unit types is growing. Max unit diversity on 5000+ spawned units.
 
@@ -26,7 +26,7 @@ Mod installation procedure is trivial. Same as for other mods.
 Unpack/checkout mod directory "0x0095854f" to "C:\Users\%USERNAME%\Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Mods\" directory.
 
 ## How to reproduce issue
-### Durty way
+### Dirty way
 0. Install mod
 1. Run FAF-offilne with `nobugreport` argument:
 > Example:\
@@ -44,7 +44,7 @@ Unpack/checkout mod directory "0x0095854f" to "C:\Users\%USERNAME%\Documents\My 
     * Keep claim. It takes few minutes.
     * Continue even if game speed is -10
     * Goal is reach ForgedAlliance.exe RAM usage about 2.3 GB.
-    * You may sometimes stop spawning and let units to kill each other. More reclaim on map -> you closer to game crash. But spawn pauses may lead to memory usage reduction: GC and stuff.
+    * You may sometimes stop spawning and let units to kill each other. More reclaim on map -> you closer to game crash. But spawn pauses may lead to memory usage reduction.
 ### Clean way
 > **FIND OUT**
 ***
@@ -66,7 +66,7 @@ This instruction calls sometimes (not so often) when loading of some recources (
 I assume that this function is a part of main resource management mechanism. And this function allocate and prepare new huge memory blocks to place game resources such as models/textures/scripts/sounds. I assume that this function allocates new memory block each time when previus allocated is filled up. And each new allocated block have bigger size than previus (some common "optimization").
 
 ## Details
-Durty decompiled code around this instruction address:
+Dirty decompiled code around this instruction address:
 ```cpp
 Function starts at 0x00958400
 ...
@@ -227,9 +227,9 @@ void** fun_957c30(...)
 	{
 		unsigned char sign = x < 0 ? 1 : 0; //?
 		x = (n + e - sign) / 2;
-		if (y >= g_iTable[x])
+		if (y >= g_d498f0[x])
 		{
-			if (z <= g_iTable[x])
+			if (z <= g_d498f0[x])
 			{
 				break;
 			}
