@@ -1,0 +1,16 @@
+name = "0x0095854f"
+uid = "e549a6ce-6227-4988-9946-40ef694cbc41"
+version = 1
+copyright = ""
+description = "Continious loop of unit construction and destroy for massive memmory usage. Designed to reproduce 0x0095854f issue."
+author = "Spheroid"
+url = ""
+selectable = true
+enabled = true
+exclusive = false
+ui_only = true
+requires = {}
+requiresNames = {}
+conflicts = {}
+before = {}
+after = {}
